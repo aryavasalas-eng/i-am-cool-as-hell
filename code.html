@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strengthener</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text for contrast */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 800px;
+            height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        .column {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .column.left {
+            background: linear-gradient(135deg, #333, #555); /* Subtle gradient for modern look */
+        }
+        .column.right {
+            background: linear-gradient(135deg, #555, #777);
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            background: #fff;
+            color: #000;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #stronger-password {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column left">
+            <h2>Enter Your Password</h2>
+            <input type="password" id="password-input" placeholder="Type your password here">
+            <button onclick="generateStrongerPassword()">Generate Stronger Version</button>
+        </div>
+        <div class="column right">
+            <h2>Stronger Version (Only Accessible by You)</h2>
+            <div id="stronger-password">Your stronger password will appear here.</div>
+        </div>
+    </div>
+
+    <script>
+        function generateStrongerPassword() {
+            const input = document.getElementById('password-input').value;
+            if (!input) {
+                alert('Please enter a password first.');
+                return;
+            }
+
+            // Simple logic to create a stronger password:
+            // 1. Capitalize the first letter.
+            // 2. Add a number (e.g., length of input).
+            // 3. Add a symbol.
+            // 4. Shuffle the letters a bit (basic rearrangement).
+            // This is just an example; real password strengthening should be more robust.
+
+            let stronger = input.charAt(0).toUpperCase() + input.slice(1); // Capitalize first letter
+            stronger += input.length; // Add length as a number
+            stronger += '!'; // Add a symbol
+
+            // Simple shuffle: reverse the string for fun (not cryptographically secure)
+            stronger = stronger.split('').reverse().join('');
+
+            document.getElementById('stronger-password').textContent = stronger;
+        }
+    </script>
+</body>
+</html>
